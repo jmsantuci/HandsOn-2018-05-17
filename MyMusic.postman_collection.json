@@ -1,0 +1,10 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Spring Boot REST API",
+		"_postman_id": "fca7ce70-27df-f526-3517-17f7adb7784d",
+		"description": "\"Spring Boot REST API for Music App\"",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": []
+}
