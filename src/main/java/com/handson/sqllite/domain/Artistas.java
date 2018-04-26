@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,7 +30,9 @@ public class Artistas implements Serializable{
 	@Column
 	private String nome;
 	
-	@OneToMany(mappedBy = "Musicas", targetEntity = Musicas.class)
+	
+	@ManyToOne(targetEntity = Musicas.class)
+    @JoinColumn(name="musicas", referencedColumnName="id")
 	private List<Musicas> musicas;
 
 	public String getId() {

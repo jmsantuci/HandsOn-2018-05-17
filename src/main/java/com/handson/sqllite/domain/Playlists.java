@@ -6,11 +6,12 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+
 
 @SuppressWarnings("serial")
 @Entity
@@ -26,7 +27,9 @@ public class Playlists implements Serializable {
 	@ManyToOne(targetEntity = PlaylistMusicas.class)
 	private List<PlaylistMusicas> playListMusicas;
 	
-	@OneToMany(mappedBy = "usuarios")
+	
+	@ManyToOne(targetEntity = Usuarios.class)
+    @JoinColumn(name="usuario", referencedColumnName="id")
 	private Usuarios usuario;
 
 	public String getId() {
@@ -51,8 +54,5 @@ public class Playlists implements Serializable {
 
 	public void setUsuario(Usuarios usuario) {
 		this.usuario = usuario;
-	}
-	
-	
-	
+	}	
 }

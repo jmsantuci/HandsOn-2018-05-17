@@ -2,10 +2,9 @@ package com.handson.sqllite.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 
@@ -14,17 +13,13 @@ import javax.persistence.Table;
 @Table(name = "PlaylistMusicas")
 public class PlaylistMusicas implements Serializable {
 
-	@ManyToOne(targetEntity = Playlists.class)
-	@JoinColumn(name="playListId", referencedColumnName="id")
+	@Id
+	@Column(name="PlaylistId")
 	private String playListId;
 
-
-	@ManyToOne(targetEntity = Musicas.class)
-	@JoinColumn(name="musicaId", referencedColumnName="id")
+	@Id
+	@Column(name="MusicaId")
 	private String musicaId;
-	
-	@OneToMany(mappedBy = "musicas")
-	private Musicas musicas;
 
 	public String getPlayListId() {
 		return playListId;
@@ -41,15 +36,5 @@ public class PlaylistMusicas implements Serializable {
 	public void setMusicaId(String musicaId) {
 		this.musicaId = musicaId;
 	}
-
-	public Musicas getMusicas() {
-		return musicas;
-	}
-
-	public void setMusicas(Musicas musicas) {
-		this.musicas = musicas;
-	}
-	
-	
 
 }
