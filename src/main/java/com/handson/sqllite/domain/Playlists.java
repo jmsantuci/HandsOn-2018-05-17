@@ -1,10 +1,13 @@
 package com.handson.sqllite.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -18,6 +21,13 @@ public class Playlists implements Serializable {
 	@GeneratedValue(generator = "UUID")
 	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	private String id;
+	
+	
+	@ManyToOne(targetEntity = PlaylistMusicas.class)
+	private List<PlaylistMusicas> playListMusicas;
+	
+	@OneToMany(mappedBy = "usuarios")
+	private Usuarios usuario;
 
 	public String getId() {
 		return id;
@@ -26,5 +36,23 @@ public class Playlists implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
+
+	public List<PlaylistMusicas> getPlayListMusicas() {
+		return playListMusicas;
+	}
+
+	public void setPlayListMusicas(List<PlaylistMusicas> playListMusicas) {
+		this.playListMusicas = playListMusicas;
+	}
+
+	public Usuarios getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuarios usuario) {
+		this.usuario = usuario;
+	}
+	
+	
 	
 }
