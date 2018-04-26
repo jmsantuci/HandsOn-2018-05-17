@@ -1,4 +1,4 @@
-package com.handson.sqlite.domain;
+package com.handson.sqllite.domain;
 
 import java.io.Serializable;
 import java.util.List;
