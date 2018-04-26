@@ -2,30 +2,34 @@ package com.handson.sqllite.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotBlank;
 
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "Artistas")
+@Table(name = "Musicas")
 public class Musicas implements Serializable{
 	
 	
 	@Id
-	
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	private String id;
 	
 	@NotBlank
+	@Column
 	private String nome;
 	
 	
-	@ManyToOne(targetEntity = Artistas.class, fetch = FetchType.LAZY)
+	@ManyToOne(targetEntity = Artistas.class)
 	private Artistas artista;
 
 

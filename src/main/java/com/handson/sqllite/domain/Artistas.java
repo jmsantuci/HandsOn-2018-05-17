@@ -3,12 +3,14 @@ package com.handson.sqllite.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotBlank;
 
 
@@ -18,12 +20,15 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Artistas implements Serializable{
 
 	@Id
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	private String id;
 	
 	@NotBlank
+	@Column
 	private String nome;
 	
-	@OneToMany(mappedBy = "Musicas", targetEntity = Musicas.class, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "Musicas", targetEntity = Musicas.class)
 	private List<Musicas> musicas;
 
 	public String getId() {
