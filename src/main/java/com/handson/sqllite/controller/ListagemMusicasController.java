@@ -22,6 +22,14 @@ public class ListagemMusicasController {
 	@RequestMapping(value="", method = RequestMethod.GET, consumes = {"application/json"})
 	public Collection<Musicas> listagem(@RequestParam(name = "filtro", required = false) String filtro) {
 		List<Musicas> listaMusicas = musicasRepository.findByArtistaNome(filtro);
-		return listaMusicas;
+		if (filtro!=null && filtro.length()<3) {
+			//TODO resposta HTTP 400
+			return null;
+		}else if (listaMusicas.isEmpty()) {
+			//TODO resposta HTTP 204
+			return null;
+		}else {
+			return listaMusicas;
+		}		
 	}
 }
